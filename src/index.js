@@ -1,7 +1,18 @@
+
 console.log(Object.keys(data[0]))
+
+console.log(data[1].isGoodDog)
 // Show names of dogs
 
 const dogList = document.querySelector(".dogs-list");
+const dogSection = document.querySelector('.main__dog-section');
+const h2 = document.querySelector('h2');
+const image = document.createElement('img');
+const bio = document.createElement('p');
+const p = document.createElement('p');
+const isGoodDog = document.createElement('button');
+
+
 
 function showDogs(){
     data.forEach(dog => {
@@ -9,11 +20,9 @@ function showDogs(){
         li.classList.add('dogs-list__button');
         li.innerText = dog.name;
         li.addEventListener('click', ()=>{
-            console.log(dog.name)
-            // delete the previous do profile
             // render data with dog variable
-            renderData(dog)
-        })
+            renderData(dog);           
+        }) 
         dogList.appendChild(li);
     });
      
@@ -22,28 +31,36 @@ function showDogs(){
 showDogs()
 
 function renderData(dog){
-    const dogSection = document.querySelector('.main__dog-section')
-    const h2 = document.querySelector('h2');
-    const image = document.createElement('img');
-    const bio = document.createElement('p')
-    const isGoodDog = document.createElement('button')
-    // data.forEach(dog => {
-        h2.innerText = dog.name;
-        bio.innerText = dog.bio;
-        isGoodDog.innerText = dog.isGoodDog;
-        image.setAttribute('src', dog.image);
-        image.setAttribute('width', '150')
-        image.setAttribute('height', '150')
-        dogSection.appendChild(image);
-        dogSection.appendChild(bio);
-        dogSection.appendChild(isGoodDog)
-    // });
+    h2.innerText = dog.name;
+    bio.innerText = dog.bio;
+    image.setAttribute('src', dog.image);
+    image.setAttribute('width', '150');
+    image.setAttribute('height', '150');
+    // div.appendChild(isGoodDog)
+    dogSection.appendChild(image);
+    dogSection.appendChild(bio);
+    dogSection.appendChild(p);
+    dogSection.appendChild(isGoodDog);
+    dogQuality(dog)
 }
 
-// renderData()
+function dogQuality(dog){
+    
+    if (dog.isGoodDog){
+            p.innerText = "is naughty? no";
+            isGoodDog.innerText = "Good Dog";
+            isGoodDog.addEventListener('click', ()=>{
+                isGoodDog.innerHTML="Bad Dog"
+                p.innerText = "is naughty? yes";
+            })
+        }
+        else{
+            p.innerText = "is naughty? yes";
+            isGoodDog.innerText = "Bad Dog";
+            isGoodDog.addEventListener('click', ()=>{
+                isGoodDog.innerHTML="Good Dog"
+                p.innerText = "is naughty? no";
+            })
+        }    
+}
 
-dogList.addEventListener('click', () => {
-    // const dogName = document.querySelector('.dogs-list__button')
-    // console.log(dogName.textContent)
-
-});

@@ -184,3 +184,7 @@ textarea {
   font: inherit;
   padding: 0.5rem;
 }
+
+button{
+  float: right;
+}
